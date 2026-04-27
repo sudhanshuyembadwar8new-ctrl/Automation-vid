@@ -1,0 +1,151 @@
+{
+  "name": "YouTube Automation — GOD MODE",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-video",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "trigger-1",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract topic from webhook OR use auto-rotation\nconst topic = $json.body?.topic || $json.query?.topic || null;\nconst videoType = $json.body?.type || 'short';\n\n// Auto-rotate topics by day of week\nconst topics = [\n  'A free AI tool that helps Indian students earn ₹10K/month with zero investment',\n  'The ChatGPT trick that 99% users dont know — this changes everything',\n  'How to build a ₹50K/month automation side hustle with n8n for free',\n  'Top 5 free AI tools every Indian student must have in 2026',\n  'A Gemini API hack that replaces ₹5000/month paid tools'\n];\n\nconst dayOfWeek = new Date().getDay();\nconst autoTopic = topics[dayOfWeek % topics.length];\n\nreturn [{ json: { topic: topic || autoTopic, videoType } }];"
+      },
+      "id": "code-1",
+      "name": "Pick Topic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={{$env.GEMINI_API_KEY}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{"name": "Content-Type", "value": "application/json"}]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "",
+              "value": "={\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"You are a viral Hinglish YouTube Shorts scriptwriter for AI tools and make money online niche.\\n\\nWrite a 45-60 second Hinglish script about: {{ $json.topic }}\\n\\nRules:\\n- Start with a HOOK that stops scrolling (first 3 sec)\\n- Use casual Hinglish: 'bhai dekh', 'free hai', 'trust me'\\n- Sound like a 22-year-old excited creator, NOT an AI\\n- Include specific tool names and rupee amounts\\n- End with strong CTA: subscribe + comment\\n\\nReturn ONLY valid JSON:\\n{\\\"title\\\": \\\"clickbait title with emoji\\\", \\\"script\\\": \\\"full script with [PAUSE] markers\\\", \\\"hashtags\\\": [\\\"array\\\"], \\\"thumbnail_text\\\": \\\"MAX 4 WORDS\\\"}\\n\"}]}],\"generationConfig\":{\"temperature\":0.9,\"maxOutputTokens\":2048,\"responseMimeType\":\"application/json\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-1",
+      "name": "Gemini — Generate Script",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Gemini response\nconst responseText = $json.candidates[0].content.parts[0].text;\nlet scriptData;\n\ntry {\n  scriptData = JSON.parse(responseText);\n} catch(e) {\n  const match = responseText.match(/```(?:json)?\\s*([\\s\\S]*?)\\s*```/);\n  scriptData = JSON.parse(match ? match[1] : responseText.trim());\n}\n\n// Add metadata\nscriptData.generated_at = new Date().toISOString();\nscriptData.topic = $node['Pick Topic'].json.topic;\n\nreturn [{ json: scriptData }];"
+      },
+      "id": "code-2",
+      "name": "Parse Script",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={{$env.GEMINI_API_KEY}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{"name": "Content-Type", "value": "application/json"}]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "",
+              "value": "={\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Generate 3 viral YouTube title variations for this video. The original title is: {{ $json.title }}\\n\\nRules:\\n- Each title must be clickbait but accurate\\n- Use emojis, numbers, and curiosity gaps\\n- Optimize for Indian audience search terms\\n- Include keywords: free, AI, 2026\\n\\nReturn ONLY valid JSON: {\\\"titles\\\": [\\\"title1\\\", \\\"title2\\\", \\\"title3\\\"]}\\n\"}]}],\"generationConfig\":{\"temperature\":0.8,\"maxOutputTokens\":512,\"responseMimeType\":\"application/json\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-2",
+      "name": "Gemini — Generate Title Variants",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1050, 180]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={{$env.GEMINI_API_KEY}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{"name": "Content-Type", "value": "application/json"}]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "",
+              "value": "={\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write a YouTube description for this video titled: {{ $json.title }}\\n\\nScript summary: {{ $json.script.slice(0, 300) }}\\n\\nInclude:\\n- Engaging first line\\n- 3-5 bullet points of what viewer will learn\\n- CTA to subscribe\\n- Relevant hashtags (8-10)\\n- Keywords for SEO\\n\\nReturn ONLY valid JSON: {\\\"description\\\": \\\"full description text\\\", \\\"tags\\\": [\\\"tag1\\\", ...]}\\n\"}]}],\"generationConfig\":{\"temperature\":0.7,\"maxOutputTokens\":1024,\"responseMimeType\":\"application/json\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-3",
+      "name": "Gemini — Generate Description",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1050, 420]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Combine all data into final package\nconst script = $node['Parse Script'].json;\nconst titles = JSON.parse($node['Gemini — Generate Title Variants'].json.candidates[0].content.parts[0].text);\nconst descData = JSON.parse($node['Gemini — Generate Description'].json.candidates[0].content.parts[0].text);\n\nconst finalPackage = {\n  title: script.title,\n  title_variants: titles.titles || [],\n  script: script.script,\n  hashtags: script.hashtags || [],\n  thumbnail_text: script.thumbnail_text,\n  description: descData.description,\n  tags: descData.tags || [],\n  generated_at: script.generated_at,\n  topic: script.topic,\n  status: 'ready_for_voice_and_video'\n};\n\nreturn [{ json: finalPackage }];"
+      },
+      "id": "code-3",
+      "name": "Combine All Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json, null, 2) }}"
+      },
+      "id": "response-1",
+      "name": "Return Complete Package",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1450, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {"main": [[{"node": "Pick Topic", "type": "main", "index": 0}]]},
+    "Pick Topic": {"main": [[{"node": "Gemini — Generate Script", "type": "main", "index": 0}]]},
+    "Gemini — Generate Script": {"main": [[{"node": "Parse Script", "type": "main", "index": 0}]]},
+    "Parse Script": {
+      "main": [[
+        {"node": "Gemini — Generate Title Variants", "type": "main", "index": 0},
+        {"node": "Gemini — Generate Description", "type": "main", "index": 0}
+      ]]
+    },
+    "Gemini — Generate Title Variants": {"main": [[{"node": "Combine All Data", "type": "main", "index": 0}]]},
+    "Gemini — Generate Description": {"main": [[{"node": "Combine All Data", "type": "main", "index": 0}]]},
+    "Combine All Data": {"main": [[{"node": "Return Complete Package", "type": "main", "index": 0}]]}
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

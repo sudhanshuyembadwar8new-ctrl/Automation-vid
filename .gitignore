@@ -1,0 +1,32 @@
+# Environment
+.env
+*.pickle
+youtube_token.pickle
+credentials.json
+youtube_oauth.json
+config/youtube_oauth.json
+
+
+# Output files
+output/
+temp/
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini

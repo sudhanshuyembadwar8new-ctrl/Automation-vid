@@ -1,0 +1,96 @@
+{
+  "categories": [
+    {
+      "id": "free_ai_tools",
+      "name": "Free AI Tools That Print Money",
+      "prompts": [
+        "A completely free AI tool that can help Indian students earn ₹10K/month online without any investment",
+        "An AI tool released this week that nobody is talking about — first mover advantage",
+        "A free AI tool that replaces ₹5000/month software — your boss doesn't want you to know this",
+        "An AI tool that automates boring tasks and saves 5 hours every single day",
+        "This free AI tool creates professional logos, banners and thumbnails in 30 seconds",
+        "A free AI coding tool that lets non-coders build apps and websites — no experience needed",
+        "Top 5 free AI tools that every Indian student MUST download right now in 2026",
+        "This AI tool writes better emails, proposals, and cover letters than any human — completely free",
+        "A free AI tool that converts your voice notes into professional documents instantly",
+        "This free AI research tool does in 5 minutes what takes PhDs 5 days"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "automation_hacks",
+      "name": "Automation & No-Code Hacks",
+      "prompts": [
+        "A simple n8n automation that runs a ₹50K/month side business on autopilot",
+        "How to automate Instagram, YouTube, and Twitter posting with zero cost tools",
+        "An automation workflow that replaces a ₹25K/month virtual assistant",
+        "Building a passive income bot with n8n and Gemini AI — step by step tutorial",
+        "5 automations every freelancer needs — save 20 hours per week for free",
+        "How I automated my entire YouTube channel — scripts, thumbnails, and uploads",
+        "The no-code automation stack that replaced my 3 employees — all free tools",
+        "Build a WhatsApp chatbot in 10 minutes using n8n — zero coding required"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "ai_tricks",
+      "name": "ChatGPT / Gemini God-Level Tricks",
+      "prompts": [
+        "A ChatGPT trick that 99% users don't know — changes everything about how you use AI",
+        "A Gemini API hack that gives you superpowers — I built a business with this one trick",
+        "How to use AI to write better content than professional writers — tested and proven method",
+        "A prompt engineering trick that makes AI 10x smarter — works on ChatGPT, Gemini, Claude",
+        "The system prompt hack that turns ChatGPT into your personal employee — real results",
+        "How to use Google Gemini API for FREE to build AI apps — complete developer guide",
+        "5 ChatGPT prompts that can replace ₹1 lakh/month tools — I tested each one",
+        "How to chain AI models together to create content that looks 100% human-written"
+      ],
+      "weight": 0.25
+    },
+    {
+      "id": "earn_online",
+      "name": "Earn Online — Indian Student Edition",
+      "prompts": [
+        "A realistic way for an Indian college student to earn ₹30K/month online with just a laptop",
+        "How to start AI freelancing on Fiverr and Upwork — from zero to first client in 7 days",
+        "A side hustle that actually works for broke college students in India — no investment needed",
+        "How to build a one-person AI agency from your hostel room — step by step blueprint",
+        "5 ways to earn money using AI tools that nobody is teaching on YouTube",
+        "How an Indian student made ₹2 lakh/month selling AI-generated content — full breakdown",
+        "The AI skill that will make every student rich in 2026 — learn it in one weekend",
+        "How to sell AI services to small businesses in India — ₹50K/month realistic income"
+      ],
+      "weight": 0.2
+    },
+    {
+      "id": "trending_tech",
+      "name": "Trending Tech This Week",
+      "prompts": [
+        "The biggest AI news this week that will change how you work forever",
+        "Google just released something INSANE — and it's completely free for everyone",
+        "This new AI tool just killed a billion-dollar industry overnight",
+        "Why every tech company is scared of this new open-source AI model",
+        "The AI update that nobody is covering — this changes everything for creators"
+      ],
+      "weight": 0.15
+    }
+  ],
+  "daily_rotation": {
+    "monday": "free_ai_tools",
+    "tuesday": "automation_hacks",
+    "wednesday": "ai_tricks",
+    "thursday": "earn_online",
+    "friday": "trending_tech",
+    "saturday": "free_ai_tools",
+    "sunday": "ai_tricks"
+  },
+  "hook_formulas": [
+    "controversy: Make a bold claim that challenges common belief",
+    "curiosity_gap: Tease a result without revealing the method",
+    "relatability: Start with a pain point every Indian student feels",
+    "shock_value: Open with a surprising statistic or result",
+    "urgency: Create FOMO — this won't last long",
+    "story: Start with a mini personal story — 'Maine ek kaam kiya aur...'",
+    "question: Ask a question that forces the viewer to think"
+  ]
+}

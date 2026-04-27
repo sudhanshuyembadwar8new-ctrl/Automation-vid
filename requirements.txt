@@ -1,0 +1,24 @@
+# ══════════════════════════════════════════
+# YouTube Automation Engine — Dependencies
+# ══════════════════════════════════════════
+
+# Core
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# TTS (100% FREE — no API key needed)
+edge-tts>=6.1.0
+
+# Image processing
+Pillow>=10.0.0
+
+# Audio processing
+pydub>=0.25.1
+
+# YouTube upload (optional — install when ready)
+# google-auth>=2.0.0
+# google-auth-oauthlib>=1.0.0
+# google-api-python-client>=2.0.0
+
+# Subtitle generation (optional — for auto-captions)
+# faster-whisper>=0.10.0

@@ -1,0 +1,36 @@
+{
+  "edge_tts": {
+    "recommended": {
+      "voice": "hi-IN-MadhurNeural",
+      "rate": "-5%",
+      "pitch": "+0Hz",
+      "description": "Best male Hindi voice — natural, young, energetic"
+    },
+    "alternatives": [
+      {
+        "voice": "hi-IN-SwaraNeural",
+        "rate": "-5%",
+        "pitch": "+0Hz",
+        "description": "Female Hindi voice — clear, professional"
+      },
+      {
+        "voice": "en-IN-PrabhatNeural",
+        "rate": "-8%",
+        "pitch": "+0Hz",
+        "description": "Indian English male — for English-heavy scripts"
+      },
+      {
+        "voice": "en-IN-NeerjaNeural",
+        "rate": "-5%",
+        "pitch": "+0Hz",
+        "description": "Indian English female — for English-heavy scripts"
+      }
+    ]
+  },
+  "notes": {
+    "why_edge_tts": "100% free, no API key, runs offline, excellent quality neural voices",
+    "rate_tip": "Negative rate = slower = more natural. -5% to -10% works best",
+    "for_shorts": "Use -3% rate (slightly faster for punchy shorts)",
+    "for_long_form": "Use -8% rate (slower, more relaxed for tutorials)"
+  }
+}

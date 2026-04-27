@@ -1,0 +1,29 @@
+{
+  "short_form": {
+    "frequency": "daily",
+    "videos_per_day": 2,
+    "times": ["10:00", "19:00"],
+    "timezone": "Asia/Kolkata",
+    "platforms": ["youtube_shorts", "instagram_reels"],
+    "duration_range": [30, 60],
+    "aspect_ratio": "9:16",
+    "resolution": "1080x1920"
+  },
+  "long_form": {
+    "frequency": "mon_wed_fri",
+    "videos_per_day": 1,
+    "times": ["14:00"],
+    "timezone": "Asia/Kolkata",
+    "platforms": ["youtube"],
+    "duration_range": [480, 900],
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080"
+  },
+  "peak_hours_india": {
+    "morning": "07:00-09:00",
+    "afternoon": "12:00-14:00",
+    "evening": "18:00-21:00",
+    "best_for_shorts": "19:00",
+    "best_for_long": "14:00"
+  }
+}

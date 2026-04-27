@@ -1,0 +1,13 @@
+{
+  "name": "youtube-automation-dashboard",
+  "version": "1.0.0",
+  "description": "GOD MODE — YouTube Automation Control Center",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
