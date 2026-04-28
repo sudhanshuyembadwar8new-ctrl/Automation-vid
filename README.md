@@ -218,4 +218,4 @@ Free lofi music: https://pixabay.com/music/search/lofi/
 
 ---
 
-*Built with ❤️ using Antigravity | ₹0 total cost*
+*Built with ❤️ using Antigravity | ₹0 total cost**
