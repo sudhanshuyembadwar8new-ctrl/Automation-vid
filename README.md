@@ -15,8 +15,9 @@ setup.bat
 Open `.env` → add your Gemini API key:
 ```
 GEMINI_API_KEY=AIzaSy...your-key-here
-```
+```                                                          
 Get FREE key (1500 req/day): https://aistudio.google.com/apikey
+
 
 ### Step 3 — Start Everything
 ```batch
