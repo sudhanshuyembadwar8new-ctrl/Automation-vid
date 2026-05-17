@@ -20,25 +20,25 @@ Get FREE key (1500 req/day): https://aistudio.google.com/apikey
 
 
 ### Step 3 — Start Everything
-```batch
+```batch              
 start.bat
 ```
 Opens dashboard at **http://localhost:3000**
 
-### Step 4 — Generate Your First Video
+### Step 4 — Generate Your First Video      
 ```batch
 python pipeline.py --type short --dry-run
 ```
 
----
+---               
 
 ## 🛠️ Tech Stack & Architecture
 
-| Component | Tool Used | Cost | Purpose |
+| Component | Tool Used | Cost | Purpose |                           
 |-----------|-----------|------|---------|
 | **Brain** | Gemini 2.0 Flash | ₹0 (1500/day) | Generates viral Hinglish scripts |
 | **Voice** | Edge TTS | ₹0 (Unlimited) | Human-like Hindi voiceovers |
-| **Vision** | Pollinations.ai | ₹0 (Unlimited) | High-quality AI image generation |
+| **Vision** | Pollinations.ai | ₹0 (Unlimited) | High-quality AI image generation |            
 | **Editor** | FFmpeg | ₹0 (Open Source) | Assembles slides, audio, and effects |
 | **Manager**| n8n | ₹0 (Self-hosted) | Orchestrates the entire workflow |
 
@@ -48,22 +48,22 @@ python pipeline.py --type short --dry-run
 graph TD
     A[n8n Webhook / start.bat] --> B(pipeline.py)
     B --> C{Step 1: Script}
-    C -->|Gemini 2.0 API| D[JSON Script + Prompts]
-    D --> E{Step 2: Voiceover}
+    C -->|Gemini 2.0 API| D[JSON Script + Prompts]                            
+    D --> E{Step 2: Voiceover}             
     E -->|Edge TTS| F[MP3 Audio]
     D --> G{Step 3: Visuals}
     G -->|Pollinations.ai| H[JPG Images]
-    F --> I{Step 4: Assembly}
+    F --> I{Step 4: Assembly}          
     H --> I
     I -->|FFmpeg| J[Final MP4 Video]
     J --> K{Step 5: Distribution}
     K -->|YouTube Data API| L[Published YouTube Short]
     
-    style A fill:#ff9900,stroke:#333,stroke-width:2px,color:#000
+    style A fill:#ff9900,stroke:#333,stroke-width:2px,color:#000           
     style L fill:#ff0000,stroke:#333,stroke-width:2px,color:#fff
     style B fill:#333,stroke:#fff,stroke-width:2px,color:#fff
 ```
-
+           
 ---
 
 ## 🎯 Pipeline Commands
@@ -77,8 +77,7 @@ python pipeline.py --type short --topic "Free AI tool for students 2026" --dry-r
 
 # Long form video
 python pipeline.py --type long --dry-run
-
-# Batch: 7 shorts in one run
+                        
 python pipeline.py --batch 7 --type short --dry-run
 
 # With YouTube upload (after OAuth setup)
@@ -97,44 +96,44 @@ python pipeline.py --type short --voice hi-IN-SwaraNeural --dry-run
 | `hi-IN-MadhurNeural` | Male Hindi | Young, energetic ⭐ Recommended |
 | `hi-IN-SwaraNeural` | Female Hindi | Clear, professional |
 | `en-IN-PrabhatNeural` | Male Indian English | For English-heavy scripts |
-| `en-IN-NeerjaNeural` | Female Indian English | For English-heavy scripts |
+| `en-IN-NeerjaNeural` | Female Indian English | For English-heavy scripts |                     
 
 List all voices: `python scripts/generate_voice.py --list-voices`
-
+                           
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure           
 
 ```
 atomatioin videos/
-├── pipeline.py              # 🚀 Master pipeline (run this)
+├── pipeline.py              # 🚀 Master pipeline (run this)                 
 ├── setup.bat                # One-click setup
 ├── start.bat                # Start dashboard
 ├── .env                     # Your API keys (NEVER commit)
-├── requirements.txt         # Python deps
+├── requirements.txt         # Python deps           
 │
 ├── scripts/
 │   ├── generate_script.py   # Gemini API → Hinglish script
 │   ├── generate_voice.py    # Edge TTS → MP3 voiceover
 │   ├── generate_visuals.py  # Pollinations.ai → images
 │   ├── assemble_video.py    # FFmpeg → final MP4
-│   └── upload_youtube.py    # YouTube Data API → upload
-│
+│   └── upload_youtube.py    # YouTube Data API → upload        
+│       
 ├── dashboard/
-│   ├── server.js            # Express API server
+│   ├── server.js            # Express API server           
 │   └── public/index.html   # Dark-mode control center
 │
 ├── config/
 │   ├── topics.json          # 40+ video topics by category
-│   ├── schedule.json        # Posting schedule
+│   ├── schedule.json        # Posting schedule          
 │   └── voices.json          # Voice configuration
 │
-├── n8n_workflows/
+├── n8n_workflows/       
 │   └── youtube_automation.json  # Import to n8n
 │
 ├── output/
 │   ├── scripts/             # Generated JSON scripts
-│   ├── audio/               # MP3 voiceovers
+│   ├── audio/               # MP3 voiceovers            
 │   ├── images/              # AI generated images
 │   ├── videos/              # Final MP4 files
 │   ├── thumbnails/          # YouTube thumbnails
